@@ -39,21 +39,30 @@ class App extends Component {
     //Add first account the the state
 
     //Get network ID
+    const networkId = await web3.eth.net.getId()
     //Get network data
-    //Check if net data exists, then
-      //Assign dvideo contract to a variable
-      //Add dvideo to the state
+    const networkData = DVideo.networks[networkId]
+    if (networkData) {
+      //Check if net data exists, then
+      const dvideo = new web3.eth.Contract(DVideo.abi, networkData.address)
+      console.log(dvideo)
+        //Assign dvideo contract to a variable
+        //Add dvideo to the state
+  
+        //Check videoAmounts
+        //Add videAmounts to the state
+  
+        //Iterate throught videos and add them to the state (by newest)
+  
+  
+        //Set latest video and it's title to view as default 
+        //Set loading state to false
+  
+        //If network data doesn't exisits, log error
 
-      //Check videoAmounts
-      //Add videAmounts to the state
-
-      //Iterate throught videos and add them to the state (by newest)
-
-
-      //Set latest video and it's title to view as default 
-      //Set loading state to false
-
-      //If network data doesn't exisits, log error
+    } else {
+      window.alert('Dvideo not deployed on network dude..')
+    }
   }
 
   //Get video
@@ -75,7 +84,7 @@ class App extends Component {
     super(props)
     this.state = {
       loading: false,
-      account: '0x0'
+      account: ''
       //set states
     }
 
